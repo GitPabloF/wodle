@@ -7,6 +7,11 @@ body{
   justify-content: center;
   color: #213547;
   background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
+  overflow-x: hidden; 
+}
+#root{
+  width: 100vw; 
+  overflow-x: hidden;
 }
 
 .main{
@@ -14,6 +19,8 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  box-sizing: border-box;
 
   &__title{
     color: #213547;
@@ -29,6 +36,15 @@ body{
   &__subtitle{
     margin-top: 0;
     color: rgba(#213547, 0.8)
+  }
+
+  &__rows-wrapper{
+    align-self: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 0;
   }
 
   &__button{
