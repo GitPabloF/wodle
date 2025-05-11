@@ -5,6 +5,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #213547;
   background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
 }
 
@@ -13,6 +14,22 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  &__title{
+    color: #213547;
+    text-transform: uppercase;
+  }
+
+  &__description{
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &__subtitle{
+    margin-top: 0;
+    color: rgba(#213547, 0.8)
+  }
 
   &__button{
     margin: 10px;
