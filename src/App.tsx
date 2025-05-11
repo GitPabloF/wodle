@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import { useState } from "react";
+import "./App.scss";
+import Row from "./components/Row/Row"
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const targetWord = "REACT";
+  const maxAttempts = 6;
+
+  const [guesses, setGuesses] = useState<string[]>([]);
+  const [currentGuess, setCurrentGuess] = useState("");
+  const [isGameOver, setIsGameOver] = useState(false);
+
+  const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setCurrentGuess(event.target.value.toUpperCase());
+  };
+
+  const handleGuess = () => {
+    if (currentGuess.length !== 5) {
+      return;
+    }
+
+    const updatedGuesses:string[] = [...guesses, currentGuess];
+    setGuesses(updatedGuesses);
+
+    if (currentGuess === targetWord || updatedGuesses.length >= maxAttempts) {
+      setIsGameOver(true);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="main">
+      <h1>Wordle</h1>
+      {guesses.map((guess, index) => (
+        <Row key={index} guess={guess} targetWord={targetWord} />
+      ))}
+      {!isGameOver && (
+        <>
+          <input
+            className="main__input"
+            onChange={handleInputChange}
+            maxLength={targetWord.length}
+            placeholder="Enter your guess"
+          />
+          <button onClick={handleGuess} className="main__button">Guess</button>
+        </>
+      )}
+      {isGameOver && currentGuess !== targetWord && (
+        <p>{`Game over! The word was: ${targetWord}`}</p>
+      )}
+    </div>
+  );
+};
 
-export default App
+export default App;

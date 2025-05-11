@@ -1,0 +1,31 @@
+.word-row{
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+
+
+  &__letter {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+  
+    &.correct{
+      background-color: green;
+    }
+    
+    &.present{
+      background-color: gold;
+    }
+    
+    &.absent{
+      background-color: lightgray;
+    }
+  }
+}
+  
