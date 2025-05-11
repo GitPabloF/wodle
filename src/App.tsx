@@ -60,7 +60,7 @@ const App = () => {
     <div className="main">
       { gamePlayable || targetWord && ( 
       <>
-        <h1 className='main__title'>Wordle - {artist}</h1>
+        <h1 className='main__title'>WODLE</h1>
         <p className='main__description'>Guess the artist or band 🎵</p>
         <p className='main__subtitle'>Type as many letters as you want </p>
         {guesses.map((guess, index) => (
