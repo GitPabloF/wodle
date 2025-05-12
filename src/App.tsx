@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import "./App.scss";
+import loader from './assets/loader.svg'
 import Row from "./components/Row/Row"
 
 type Data = {
@@ -10,6 +11,7 @@ const App = () => {
   const maxAttempts = 6;
   const [error, setError] = useState<boolean>(false)
   const [artist, setArtist] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const targetWord: string | null = artist ? artist.toLocaleUpperCase() : null;
 
   const gamePlayable = !targetWord || error
@@ -19,12 +21,13 @@ const App = () => {
   const fetchArtist = async() => {
     try{
       const response = await fetch(`${apiUrl}/randomArtist`)
-      console.log(response)
       if(!response.ok) throw new Error()
       const data:Data = await response.json()
       setArtist(data.artist)
+      setIsLoading(false)
     } catch (error) {
       setError(true)
+      setIsLoading(false)
     }
   }
 
@@ -85,6 +88,8 @@ const App = () => {
           <p>{`Game over 🫣 The word was: ${artist}`}</p>
         )}
       </>)}
+      {/*Loading*/}
+      {isLoading && !error && (<img src={loader} alt="loader" />)}
       {/* ERROR */}
       {error &&( <p>We are sorry, an error has occurred. It's not possible to play now 😔.</p>)}
     </div>
