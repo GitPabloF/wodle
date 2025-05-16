@@ -51,11 +51,8 @@ const App = () => {
   };
 
   const handleGuess = () => {
-    console.log('handleGuess');
     if(!gamePlayable) return 
     setInputValue('')
-    console.log('guesses', guesses)
-    console.log(currentGuess, 'currentGuees')
     const updatedGuesses:string[] = [...guesses, currentGuess];
     setGuesses(updatedGuesses);
 
