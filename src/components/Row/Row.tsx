@@ -11,6 +11,8 @@ const Row = ({ guess, targetWord }: RowProps) => {
   const targetArray = targetWord.split("");
   const guessArray = guess ? guess.split("") : [];
 
+  const wrongAnswer = guess !== '' && guess !== targetWord && guess
+
   const getLetterStatus = (index: number) => {
     const letter = targetArray[index];
     const guessedLetter = guessArray[index];
@@ -24,7 +26,7 @@ const Row = ({ guess, targetWord }: RowProps) => {
   };
 
   return (
-    <div className="word-row">
+    <div className={`word-row ${wrongAnswer ? '-wrong-answer' : ''}`}>
       {targetArray.map((letter, index) => (
         <span
           className={`word-row__letter ${getLetterStatus(index)}`}
