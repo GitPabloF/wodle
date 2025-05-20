@@ -28,6 +28,19 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #213547;
+  background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
+  overflow-x: hidden; 
+}
+#root{
+  width: 100vw; 
+  overflow-x: hidden;
 }
 
 h1 {
