@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
 import "./App.scss";
@@ -63,6 +63,13 @@ const App = () => {
     }
   };
 
+  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if(event.key === 'Enter'){
+      console.log('enter')
+      handleGuess()
+    }
+  }
+
   for (let i = 0; i < 6 - guesses.length; i++) {
     if(!targetWord) continue
     emptyRows.push(<Row key={i}  targetWord={targetWord} />);
@@ -93,6 +100,7 @@ const App = () => {
               value={inputValue}
               maxLength={targetWord.length}
               placeholder="Enter your guess"
+              onKeyDown={handleKeyDown}
             />
             <button onClick={handleGuess} className="main__button">Guess</button>
           </>
